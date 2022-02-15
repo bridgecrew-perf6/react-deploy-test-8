@@ -1,32 +1,24 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-size: 36px;
-  color: #acf;
-`;
+import { Link } from 'react-router-dom';
+import list from 'src/assets/data.json';
 
 const Home = () => {
-  const [count, setCount] = useState(0);
-  const increase = () => {
-    setCount((c) => c + 1);
-  };
-
-  const decrease = () => {
-    setCount((c) => c - 1);
-  };
-
   return (
-    <div>
-      <Title>Hello World</Title>
-      <h1>{count}</h1>
-      <button onClick={increase}>Increase</button>
-      <button onClick={decrease}>Decrease</button>
-      <div className="p-5">
-        <button className="bg-indigo-700 text-white font-bold py-3 px-5 text-3xl rounded hover:bg-indigo-900 active:bg-indigo-700">
-          Tailwind CSS
-        </button>
-      </div>
+    <div className="p-3">
+      <h1 className="text-3xl text-indigo-700 font-semibold text-center mb-5">
+        Home Page
+      </h1>
+      <ul className="max-w-4xl mx-auto grid grid-cols-3 gap-3">
+        {list.map((ele) => (
+          <li key={ele.name}>
+            <Link
+              className="block border border-gray-300 text-gray-700 p-3 rounded-sm hover:bg-gray-100"
+              to={ele.link}
+            >
+              {ele.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
